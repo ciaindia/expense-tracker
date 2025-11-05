@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Tracker - PRD</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .nav {
+            background: #2d3748;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        .nav a:hover {
+            background: #4a5568;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 70px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h4 {
+            color: #4a5568;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .sprint-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .sprint-card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .sprint-duration {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f7fafc;
+        }
+        
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .tech-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .wireframe-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .wireframe-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .wireframe-item h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mermaid {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .priority-high {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+        
+        .priority-medium {
+            color: #dd6b20;
+            font-weight: 600;
+        }
+        
+        .priority-low {
+            color: #38a169;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media print {
+            .nav {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Expense Tracker</h1>
+            <p>Product Requirements Document (PRD)</p>
+            <p style="font-size: 0.9rem; margin-top: 1rem;">Version 1.0 | Agile Scrum Development | Single-User Application</p>
+        </header>
+        
+        <nav class="nav">
+            <a onclick="document.getElementById('overview').scrollIntoView({behavior: 'smooth'})">Overview</a>
+            <a onclick="document.getElementById('tech-stack').scrollIntoView({behavior: 'smooth'})">Tech Stack</a>
+            <a onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Features</a>
+            <a onclick="document.getElementById('architecture').scrollIntoView({behavior: 'smooth'})">Architecture</a>
+            <a onclick="document.getElementById('wireframes').scrollIntoView({behavior: 'smooth'})">Wireframes</a>
+            <a onclick="document.getElementById('mvp').scrollIntoView({behavior: 'smooth'})">MVP Sprints</a>
+            <a onclick="document.getElementById('api').scrollIntoView({behavior: 'smooth'})">API Specs</a>
+            <a onclick="document.getElementById('database').scrollIntoView({behavior: 'smooth'})">Database</a>
+        </nav>
+        
+        <div class="content">
+            <section id="overview">
+                <h2>📋 Project Overview</h2>
+                <p>The Expense Tracker is a full-stack web application designed to help a single user manage their personal finances by tracking expenses, setting budgets, and visualizing spending patterns through interactive charts and reports.</p>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Important Note:</strong> This is a <strong>single-user application</strong> without authentication or multi-user support. All data is stored locally for one user only.
+                </div>
+                
+                <h3>Project Goals</h3>
+                <ul>
+                    <li>Enable user to track daily expenses across multiple categories</li>
+                    <li>Provide visual insights into spending patterns</li>
+                    <li>Help user set and monitor budgets</li>
+                    <li>Offer a clean, intuitive user interface</li>
+                    <li>Implement CRUD operations for expense management</li>
+                    <li>Learn full-stack development with React, Node.js, Express, and MySQL</li>
+                </ul>
+                
+                <h3>Target Users</h3>
+                <ul>
+                    <li>Students learning full-stack development</li>
+                    <li>Individual users tracking personal expenses</li>
+                    <li>Anyone looking for a simple, local expense management solution</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Development Approach:</strong> Agile Scrum methodology with 6-hour sprints per week. Each sprint delivers incremental value with working features.
+                </div>
+            </section>
+            
+            <section id="tech-stack">
+                <h2>🛠️ Technology Stack</h2>
+                
+                <h3>Frontend</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">React 18+</span>
+                    <span class="tech-badge">React Router (optional)</span>
+                    <span class="tech-badge">Axios</span>
+                    <span class="tech-badge">Chart.js / Recharts</span>
+                    <span class="tech-badge">CSS3</span>
+                </div>
+                
+                <h3>Backend</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">Express.js</span>
+                    <span class="tech-badge">MySQL2</span>
+                    <span class="tech-badge">cors</span>
+                    <span class="tech-badge">dotenv</span>
+                </div>
+                
+                <h3>Database</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">MySQL</span>
+                </div>
+                
+                <h3>Development Tools</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Git & GitHub</span>
+                    <span class="tech-badge">Postman (API Testing)</span>
+                    <span class="tech-badge">VS Code</span>
+                    <span class="tech-badge">npm/yarn</span>
+                    <span class="tech-badge">Nodemon</span>
+                </div>
+            </section>
+            
+            <section id="features">
+                <h2>✨ Features & Requirements</h2>
+                
+                <h3>Core Features</h3>
+                
+                <h4>1. Dashboard</h4>
+                <ul>
+                    <li>Welcome message with user's name (hardcoded: "Hello, Munaf Hajir")</li>
+                    <li>Display total budget, total expenses, and remaining budget</li>
+                    <li>Quick action buttons (Add Budget, Add Expense)</li>
+                    <li>Category filter buttons (All Expense, Food & Drink, Groceries, Travel, Health)</li>
+                    <li>Visual expense breakdown (pie chart)</li>
+                    <li>Spending trend chart (bar chart)</li>
+                </ul>
+                
+                <h4>2. Expense Management</h4>
+                <ul>
+                    <li><strong>Add Expense:</strong> Name, date, category, amount</li>
+                    <li><strong>Edit Expense:</strong> Modify existing expense details</li>
+                    <li><strong>Delete Expense:</strong> Remove expenses with confirmation modal</li>
+                    <li><strong>View Expenses:</strong> List view in table format</li>
+                    <li><strong>Categories:</strong> Travel, Groceries, Food & Drink, Health, Meal, etc.</li>
+                    <li><strong>Filter by Category:</strong> Click category buttons to filter expenses</li>
+                </ul>
+                
+                <h4>3. Budget Management</h4>
+                <ul>
+                    <li>Set total budget amount</li>
+                    <li>Update budget amount</li>
+                    <li>Automatically calculate remaining budget</li>
+                    <li>Display budget metrics in real-time</li>
+                </ul>
+                
+                <h4>4. Expense Analytics</h4>
+                <ul>
+                    <li>Pie chart showing expense distribution by category</li>
+                    <li>Bar chart showing spending trends</li>
+                    <li>Category-wise expense breakdown</li>
+                    <li>Color-coded categories for easy identification</li>
+                </ul>
+                
+                <h4>5. Expense Tracker Table</h4>
+                <ul>
+                    <li>Table with columns: Sr., Expense, Amount, Edit/Delete</li>
+                    <li>Serial number auto-generated</li>
+                    <li>Edit button (pen icon) for each expense</li>
+                    <li>Delete button (trash icon) for each expense</li>
+                    <li>Responsive design for mobile devices</li>
+                </ul>
+                
+                <h3>Non-Functional Requirements</h3>
+                <ul>
+                    <li><strong>Performance:</strong> Page load time under 2 seconds</li>
+                    <li><strong>Security:</strong> SQL injection prevention, input validation</li>
+                    <li><strong>Usability:</strong> Intuitive UI, responsive design</li>
+                    <li><strong>Data Persistence:</strong> All data stored in MySQL database</li>
+                    <li><strong>Error Handling:</strong> Graceful error messages for failed operations</li>
+                </ul>
+            </section>
+            
+            <section id="architecture">
+                <h2>🏗️ System Architecture</h2>
+                
+                <h3>High-Level Architecture</h3>
+                <div class="mermaid">
+graph TB
+    A[Client Browser] -->|HTTP/HTTPS| B[React Frontend]
+    B -->|API Calls| C[Express Backend]
+    C -->|SQL Queries| D[MySQL Database]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style C fill:#f3e5f5
+    style D fill:#e8f5e9
+                </div>
+                
+                <h3>Application Flow</h3>
+                <div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant B as Backend
+    participant DB as Database
+    
+    U->>F: Access Dashboard
+    F->>B: GET /api/expenses
+    B->>DB: SELECT * FROM expenses
+    DB-->>B: Return expense data
+    B-->>F: JSON response
+    F->>F: Render charts & tables
+    F-->>U: Display dashboard
+    
+    U->>F: Add New Expense
+    F->>B: POST /api/expenses
+    B->>DB: INSERT INTO expenses
+    DB-->>B: Confirmation
+    B-->>F: Success response
+    F-->>U: Update UI & close modal
+                </div>
+                
+                <h3>Component Architecture (Frontend)</h3>
+                <div class="mermaid">
+graph TD
+    A[App.js] --> B[Dashboard]
+    
+    B --> C[Header with Welcome]
+    B --> D[Budget Cards]
+    B --> E[Action Buttons]
+    B --> F[Charts Section]
+    B --> G[Expense Table]
+    
+    D --> D1[Total Budget Card]
+    D --> D2[Total Expense Card]
+    D --> D3[Remaining Budget Card]
+    
+    E --> E1[Category Filters]
+    E --> E2[Add Budget Button]
+    E --> E3[Add Expense Button]
+    
+    F --> F1[Pie Chart]
+    F --> F2[Bar Chart]
+    
+    G --> G1[Expense List]
+    G --> G2[Edit Button]
+    G --> G3[Delete Button]
+    
+    A --> H[Modals]
+    H --> H1[Add Expense Modal]
+    H --> H2[Edit Expense Modal]
+    H --> H3[Add Budget Modal]
+    H --> H4[Delete Confirmation Modal]
+    
+    style A fill:#667eea
+    style B fill:#764ba2
+    style H fill:#f093fb
+                </div>
+                
+                <h3>Database Schema</h3>
+                <div class="mermaid">
+erDiagram
+    EXPENSES {
+        int id PK
+        string expense_name
+        decimal amount
+        string category
+        date expense_date
+        datetime created_at
+        datetime updated_at
+    }
+    BUDGET {
+        int id PK
+        decimal total_amount
+        datetime created_at
+        datetime updated_at
+    }
+    CATEGORIES {
+        int id PK
+        string category_name
+        string color_code
+    }
+                </div>
+            </section>
+            
+            <section id="wireframes">
+                <h2>🎨 Wireframes & UI Screenshots</h2>
+                
+                <div class="wireframe-section">
+                    <h3>Main Dashboard (Frame 3)</h3>
+                    <div class="wireframe-item">
+                        <h5>Dashboard Overview - 1440 x 1455 px</h5>
+                        <p><strong>Layout Components:</strong></p>
+                        <ul>
+                            <li><strong>Header:</strong> "Hello, Munaf Hajir" (personalized greeting)</li>
+                            <li><strong>Budget Cards Row:</strong>
+                                <ul>
+                                    <li>Total Budget: ₹20,000</li>
+                                    <li>Total Expense: ₹12,205</li>
+                                    <li>Remaining Budget: ₹7,795</li>
+                                </ul>
+                            </li>
+                            <li><strong>Action Buttons:</strong>
+                                <ul>
+                                    <li>All Expense (default selected)</li>
+                                    <li>Food & Drink</li>
+                                    <li>Groceries</li>
+                                    <li>Travel</li>
+                                    <li>Health</li>
+                                    <li>+ Add Budget (blue button)</li>
+                                    <li>+ Add Expense (blue button)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Charts Section (Side by Side):</strong>
+                                <ul>
+                                    <li>Left: Expense Chart (Pie Chart)</li>
+                                    <li>Right: Expenses Tracker (Bar Chart)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Expense Table:</strong>
+                                <ul>
+                                    <li>Columns: Sr. | Expense | Amount | Edit/Delete</li>
+                                    <li>Sample data shows 5 expenses at ₹99.00 each</li>
+                                    <li>Edit icon (pen) and Delete icon (trash) buttons</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="info-box">
+                            <strong>Key Features:</strong>
+                            <ul>
+                                <li>Pie chart with segments: Travel (orange), Groceries (blue), Food & Drink (yellow), Meal (light blue)</li>
+                                <li>Bar chart showing expense distribution</li>
+                                <li>Clean, modern UI with blue accent color (#4A7BF7)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="wireframe-grid">
+                        <div class="wireframe-item">
+                            <h5>Add Expense Modal (Frame 37)</h5>
+                            <p><strong>Modal Title:</strong> "Add Expense"</p>
+                            <p><strong>Form Fields:</strong></p>
+                            <ul>
+                                <li><strong>Expense Name*</strong> (required)
+                                    <ul><li>Text input with placeholder: "Expense Name"</li></ul>
+                                </li>
+                                <li><strong>Date*</strong> (required)
+                                    <ul><li>Date picker with format: DD/MM/YYYY</li></ul>
+                                </li>
+                                <li><strong>Category*</strong> (required)
+                                    <ul><li>Dropdown with placeholder: "Select a Category"</li></ul>
+                                </li>
+                                <li><strong>Amount*</strong> (required)
+                                    <ul><li>Number input with placeholder: "Enter Amount"</li></ul>
+                                </li>
+                                <li><strong>Action Button:</strong>
+                                    <ul><li>"+ Add Expense" (blue, full-width button)</li></ul>
+                                </li>
+                            </ul>
+                            <p><strong>Close Button:</strong> X icon in top-right corner</p>
+                        </div>
+                        
+                        <div class="wireframe-item">
+                            <h5>Add Budget Modal (Frame 38)</h5>
+                            <p><strong>Modal Title:</strong> "Add Budget"</p>
+                            <p><strong>Form Fields:</strong></p>
+                            <ul>
+                                <li><strong>Amount*</strong> (required)
+                                    <ul><li>Number input with placeholder: "Enter amount"</li></ul>
+                                </li>
+                                <li><strong>Action Button:</strong>
+                                    <ul><li>"+ Add Budget" (blue, full-width button)</li></ul>
+                                </li>
+                            </ul>
+                            <p><strong>Close Button:</strong> X icon in top-right corner</p>
+                            <p><strong>Note:</strong> Simple modal with single input field</p>
+                        </div>
+                        
+                        <div class="wireframe-item">
+                            <h5>Edit Expense Modal (Frame 39)</h5>
+                            <p><strong>Modal Title:</strong> "Edit Expense"</p>
+                            <p><strong>Form Fields:</strong> (Pre-filled with existing data)</p>
+                            <ul>
+                                <li><strong>Expense Name*</strong>
+                                    <ul><li>Text input (pre-filled)</li></ul>
+                                </li>
+                                <li><strong>Date*</strong>
+                                    <ul><li>Date picker (pre-filled, format: DD/MM/YYYY)</li></ul>
+                                </li>
+                                <li><strong>Category*</strong>
+                                    <ul><li>Dropdown (pre-selected)</li></ul>
+                                </li>
+                                <li><strong>Amount*</strong>
+                                    <ul><li>Number input (pre-filled)</li></ul>
+                                </li>
+                                <li><strong>Action Button:</strong>
+                                    <ul><li>"+ Edit Expense" (blue, full-width button)</li></ul>
+                                </li>
+                            </ul>
+                            <p><strong>Close Button:</strong> X icon in top-right corner</p>
+                        </div>
+                        
+                        <div class="wireframe-item">
+                            <h5>Delete Confirmation Modal (Frame 40)</h5>
+                            <p><strong>Modal Design:</strong> Centered alert dialog</p>
+                            <p><strong>Elements:</strong></p>
+                            <ul>
+                                <li><strong>Icon:</strong> Red circle with white exclamation mark (!)</li>
+                                <li><strong>Title:</strong> "Are you sure"</li>
+                                <li><strong>Message:</strong> "You won't be able to revert this!"</li>
+                                <li><strong>Action Buttons:</strong>
+                                    <ul>
+                                        <li>"Cancel" (gray button)</li>
+                                        <li>"Confirm" (red button)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p><strong>Purpose:</strong> Prevent accidental deletion of expenses</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Design Specifications</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Specification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Canvas Size</td>
+                            <td>1440 x 1455 px</td>
+                        </tr>
+                        <tr>
+                            <td>Primary Color</td>
+                            <td>Blue (#4A7BF7 or similar)</td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Color</td>
+                            <td>Purple (#764ba2)</td>
+                        </tr>
+                        <tr>
+                            <td>Accent Color (Delete)</td>
+                            <td>Red (#EF4444)</td>
+                        </tr>
+                        <tr>
+                            <td>Background</td>
+                            <td>Light gray (#F5F5F5)</td>
+                        </tr>
+                        <tr>
+                            <td>Font Family</td>
+                            <td>Inter / Roboto / System default</td>
+                        </tr>
+                        <tr>
+                            <td>Button Style</td>
+                            <td>Rounded corners (4-8px), solid colors</td>
+                        </tr>
+                        <tr>
+                            <td>Modal Style</td>
+                            <td>Centered overlay with backdrop, rounded corners, close (X) button</td>
+                        </tr>
+                        <tr>
+                            <td>Chart Colors</td>
+                            <td>Orange, Blue, Yellow, Light Blue (as shown in wireframe)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="mvp">
+                <h2>🚀 MVP Development - Sprint Planning</h2>
+                
+                <div class="info-box">
+                    <strong>Sprint Duration:</strong> 6 hours per week (1 sprint = 1 week)<br>
+                    <strong>Total MVP Timeline:</strong> 5 sprints (5 weeks)<br>
+                    <strong>Team Capacity:</strong> 6 hours focused development + additional self-paced learning time<br>
+                    <strong>Note:</strong> No authentication required - single user application
+                </div>
+                
+                <div class="sprint-card">
+                    <span class="sprint-duration">Sprint 1 - 6 Hours</span>
+                    <h4>Foundation & Setup</h4>
+                    <p><strong>Goal:</strong> Project initialization, database setup, and basic backend structure</p>
+                    
+                    <h5>Tasks (Time Breakdown):</h5>
+                    <ol>
+                        <li><strong>Initialize Git repository</strong> (15 min)
+                            <ul>
+                                <li>Create project folder structure</li>
+                                <li>Initialize git and create .gitignore</li>
+                            </ul>
+                        </li>
+                        <li><strong>Set up Node.js/Express backend</strong> (1 hour)
+                            <ul>
+                                <li>npm init and install dependencies (express, mysql2, cors, dotenv)</li>
+                                <li>Create server.js with basic Express setup</li>
+                                <li>Set up folder structure (routes, controllers, config)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configure MySQL database</strong> (1.5 hours)
+                            <ul>
+                                <li>Install MySQL locally or use cloud instance</li>
+                                <li>Create database: <code>expense_tracker</code></li>
+                                <li>Create tables: expenses, budget, categories</li>
+                                <li>Write SQL schema file</li>
+                                <li>Set up database connection in Node.js</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create React app</strong> (1.5 hours)
+                            <ul>
+                                <li>npx create-react-app frontend</li>
+                                <li>Clean up default files</li>
+                                <li>Install axios for API calls</li>
+                                <li>Create basic folder structure (components, utils)</li>
+                                <li>Test connection between frontend and backend</li>
+                            </ul>
+                        </li>
+                        <li><strong>Set up environment variables</strong> (15 min)
+                            <ul>
+                                <li>Create .env file for database credentials</li>
+                                <li>Configure CORS for frontend-backend communication</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create basic API endpoints</strong> (1.25 hours)
+                            <ul>
+                                <li>GET /api/test - Test endpoint</li>
+                                <li>GET /api/expenses - Fetch all expenses</li>
+                                <li>GET /api/budget - Fetch budget</li>
+                                <li>Test endpoints using Postman</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h5>Deliverables:</h5>
+                    <ul>
+                        <li>✅ MySQL database with tables created</li>
+                        <li>✅ Express server running on port 5000</li>
+                        <li>✅ React app running on port 3000</li>
+                        <li>✅ Basic API endpoints functional</li>
+                        <li>✅ Git repository initialized with first commit</li>
+                    </ul>
+                    
+                    <h5>Success Criteria:</h5>
+                    <p>Frontend can successfully fetch data from backend, and backend can query MySQL database.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <span class="sprint-duration">Sprint 2 - 6 Hours</span>
+                    <h4>Expense CRUD Operations</h4>
+                    <p><strong>Goal:</strong> Complete expense management functionality with all CRUD operations</p>
+                    
+                    <h5>Tasks (Time Breakdown):</h5>
+                    <ol>
+                        <li><strong>Create Expense API endpoints</strong> (2 hours)
+                            <ul>
+                                <li>POST /api/expenses - Create new expense</li>
+                                <li>PUT /api/expenses/:id - Update expense</li>
+                                <li>DELETE /api/expenses/:id - Delete expense</li>
+                                <li>Add input validation for all fields</li>
+                                <li>Test all endpoints in Postman</li>
+                            </ul>
+                        </li>
+                        <li><strong>Build Add Expense Modal</strong> (1.5 hours)
+                            <ul>
+                                <li>Create Modal component</li>
+                                <li>Add form with fields: name, date, category, amount</li>
+                                <li>Implement form validation</li>
+                                <li>Connect to POST API</li>
+                                <li>Show success/error messages</li>
+                            </ul>
+                        </li>
+                        <li><strong>Build Edit Expense Modal</strong> (1.5 hours)
+                            <ul>
+                                <li>Create EditModal component</li>
+                                <li>Pre-fill form with existing expense data</li>
+                                <li>Connect to PUT API</li>
+                                <li>Handle form submission</li>
+                            </ul>
+                        </li>
+                        <li><strong>Build Delete Confirmation Modal</strong> (45 min)
+                            <ul>
+                                <li>Create DeleteConfirmation component</li>
+                                <li>Add warning icon and message</li>
+                                <li>Connect to DELETE API</li>
+                                <li>Close modal on confirm/cancel</li>
+                            </ul>
+                        </li>
+                        <li><strong>Basic Expense Display</strong> (15 min)
+                            <ul>
+                                <li>Create simple list to display expenses</li>
+                                <li>Fetch expenses on component mount</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h5>Deliverables:</h5>
+                    <ul>
+                        <li>✅ Full CRUD API for expenses working</li>
+                        <li>✅ Add Expense modal functional</li>
+                        <li>✅ Edit Expense modal functional</li>
+                        <li>✅ Delete confirmation working</li>
+                        <li>✅ Data persisting in MySQL database</li>
+                    </ul>
+                    
+                    <h5>Success Criteria:</h5>
+                    <p>User can add, edit, and delete expenses through the UI, and all changes persist in the database.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <span class="sprint-duration">Sprint 3 - 6 Hours</span>
+                    <h4>Dashboard UI & Budget Management</h4>
+                    <p><strong>Goal:</strong> Build main dashboard layout with budget features</p>
+                    
+                    <h5>Tasks (Time Breakdown):</h5>
+                    <ol>
+                        <li><strong>Create Budget API endpoints</strong> (1 hour)
+                            <ul>
+                                <li>GET /api/budget - Fetch current budget</li>
+                                <li>POST /api/budget - Create/update budget</li>
+                                <li>Handle case when no budget exists</li>
+                            </ul>
+                        </li>
+                        <li><strong>Build Dashboard Layout</strong> (1.5 hours)
+                            <ul>
+                                <li>Create Dashboard component</li>
+                                <li>Add header with "Hello, Munaf Hajir"</li>
+                                <li>Create grid layout for budget cards</li>
+                                <li>Style with CSS (or Tailwind)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create Budget Summary Cards</strong> (1.5 hours)
+                            <ul>
+                                <li>Total Budget card</li>
+                                <li>Total Expense card (calculate sum)</li>
+                                <li>Remaining Budget card (budget - expenses)</li>
+                                <li>Add rupee symbol (₹) formatting</li>
+                                <li>Real-time calculation from API data</li>
+                            </ul>
+                        </li>
+                        <li><strong>Build Add Budget Modal</strong> (1 hour)
+                            <ul>
+                                <li>Create simple modal with amount input</li>
+                                <li>Connect to POST /api/budget</li>
+                                <li>Update dashboard on successful save</li>
+                            </ul>
+                        </li>
+                        <li><strong>Add Category Filter Buttons</strong> (1 hour)
+                            <ul>
+                                <li>Create button row: All, Food & Drink, Groceries, Travel, Health</li>
+                                <li>Add active state styling</li>
+                                <li>Implement filter logic (to be connected to table later)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h5>Deliverables:</h5>
+                    <ul>
+                        <li>✅ Dashboard layout complete</li>
+                        <li>✅ Budget cards displaying correct values</li>
+                        <li>✅ Add Budget functionality working</li>
+                        <li>✅ Category filter buttons visible</li>
+                        <li>✅ Responsive design basics</li>
+                    </ul>
+                    
+                    <h5>Success Criteria:</h5>
+                    <p>Dashboard displays budget metrics accurately, and user can set/update budget amount.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <span class="sprint-duration">Sprint 4 - 6 Hours</span>
+                    <h4>Data Visualization - Charts</h4>
+                    <p><strong>Goal:</strong> Implement pie chart and bar chart for expense visualization</p>
+                    
+                    <h5>Tasks (Time Breakdown):</h5>
+                    <ol>
+                        <li><strong>Install Chart Library</strong> (15 min)
+                            <ul>
+                                <li>npm install chart.js react-chartjs-2 (or recharts)</li>
+                                <li>Import and set up in components</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create Pie Chart Component</strong> (2 hours)
+                            <ul>
+                                <li>Build PieChart component</li>
+                                <li>Calculate category totals from expenses</li>
+                                <li>Configure colors: Travel (orange), Groceries (blue), Food & Drink (yellow), etc.</li>
+                                <li>Add labels and percentages</li>
+                                <li>Add legend</li>
+                                <li>Make responsive</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create Bar Chart Component</strong> (2 hours)
+                            <ul>
+                                <li>Build BarChart component</li>
+                                <li>Aggregate expenses by date/month</li>
+                                <li>Configure x-axis (dates) and y-axis (amounts)</li>
+                                <li>Style bars with blue color</li>
+                                <li>Add tooltips</li>
+                                <li>Make responsive</li>
+                            </ul>
+                        </li>
+                        <li><strong>Integrate Charts in Dashboard</strong> (1 hour)
+                            <ul>
+                                <li>Create side-by-side layout</li>
+                                <li>Add section titles: "Expense Chart" and "Expenses Tracker"</li>
+                                <li>Ensure charts update when expenses change</li>
+                                <li>Test with different data sets</li>
+                            </ul>
+                        </li>
+                        <li><strong>Polish and Styling</strong> (45 min)
+                            <ul>
+                                <li>Fine-tune colors to match wireframe</li>
+                                <li>Add spacing and padding</li>
+                                <li>Ensure mobile responsiveness</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h5>Deliverables:</h5>
+                    <ul>
+                        <li>✅ Pie chart showing category distribution</li>
+                        <li>✅ Bar chart showing spending trends</li>
+                        <li>✅ Charts responsive and interactive</li>
+                        <li>✅ Charts update dynamically with data</li>
+                        <li>✅ Color-coded categories matching wireframe</li>
+                    </ul>
+                    
+                    <h5>Success Criteria:</h5>
+                    <p>Both charts render correctly, display accurate data, and update in real-time when expenses are added/edited/deleted.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <span class="sprint-duration">Sprint 5 - 6 Hours</span>
+                    <h4>Expense Table & Final Polish</h4>
+                    <p><strong>Goal:</strong> Complete expense table, integrate filters, and polish the application</p>
+                    
+                    <h5>Tasks (Time Breakdown):</h5>
+                    <ol>
+                        <li><strong>Build Expense Table Component</strong> (2 hours)
+                            <ul>
+                                <li>Create table with columns: Sr., Expense, Amount, Edit/Delete</li>
+                                <li>Auto-generate serial numbers</li>
+                                <li>Format amounts with ₹ symbol</li>
+                                <li>Add edit (pen) icon button</li>
+                                <li>Add delete (trash) icon button</li>
+                                <li>Style table rows with hover effects</li>
+                            </ul>
+                        </li>
+                        <li><strong>Connect Category Filters</strong> (1 hour)
+                            <ul>
+                                <li>Implement filter logic to table</li>
+                                <li>Filter expenses by selected category</li>
+                                <li>"All Expense" shows all categories</li>
+                                <li>Update charts when filter changes</li>
+                            </ul>
+                        </li>
+                        <li><strong>Connect Edit/Delete to Table</strong> (45 min)
+                            <ul>
+                                <li>Wire edit button to open Edit Modal with data</li>
+                                <li>Wire delete button to open Delete Confirmation</li>
+                                <li>Refresh table after operations</li>
+                            </ul>
+                        </li>
+                        <li><strong>Add Loading States & Error Handling</strong> (1 hour)
+                            <ul>
+                                <li>Add loading spinners for API calls</li>
+                                <li>Display error messages for failed operations</li>
+                                <li>Add empty state for no expenses</li>
+                                <li>Add success notifications</li>
+                            </ul>
+                        </li>
+                        <li><strong>Final UI Polish</strong> (1 hour)
+                            <ul>
+                                <li>Ensure all styling matches wireframe</li>
+                                <li>Add smooth transitions and animations</li>
+                                <li>Test on different screen sizes</li>
+                                <li>Fix any UI bugs</li>
+                                <li>Optimize performance</li>
+                            </ul>
+                        </li>
+                        <li><strong>Testing & Documentation</strong> (15 min)
+                            <ul>
+                                <li>Test all features end-to-end</li>
+                                <li>Update README with setup instructions</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h5>Deliverables:</h5>
+                    <ul>
+                        <li>✅ Fully functional expense table</li>
+                        <li>✅ Category filtering working</li>
+                        <li>✅ All CRUD operations connected to UI</li>
+                        <li>✅ Loading states and error handling</li>
+                        <li>✅ Complete, polished application</li>
+                        <li>✅ README documentation</li>
+                    </ul>
+                    
+                    <h5>Success Criteria:</h5>
+                    <p>Application matches wireframe design, all features work correctly, and app is production-ready.</p>
+                </div>
+                
+                <h3>Post-MVP Enhancements (Optional)</h3>
+                <div class="info-box">
+                    <strong>Future Sprints:</strong> These features can be added after MVP completion
+                    <ul>
+                        <li><strong>Sprint 6:</strong> Date range filtering, export to CSV</li>
+                        <li><strong>Sprint 7:</strong> Monthly/yearly reports, budget alerts</li>
+                        <li><strong>Sprint 8:</strong> Dark mode, custom categories</li>
+                        <li><strong>Sprint 9:</strong> Multi-user authentication (if needed later)</li>
+                        <li><strong>Sprint 10:</strong> Recurring expenses, expense search</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="api">
+                <h2>🔌 API Specifications</h2>
+                
+                <h3>Base URL</h3>
+                <code>http://localhost:5000/api</code>
+                
+                <h3>Expense Endpoints</h3>
+                
+                <h4>1. Get All Expenses</h4>
+                <p><strong>Endpoint:</strong> <code>GET /api/expenses</code></p>
+                <p><strong>Description:</strong> Fetch all expenses</p>
+                <p><strong>Response:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "expense_name": "Grocery Shopping",
+      "amount": 99.00,
+      "category": "Groceries",
+      "expense_date": "2024-11-01",
+      "created_at": "2024-11-01T10:30:00Z"
+    }
+  ]
+}</pre>
+                
+                <h4>2. Get Single Expense</h4>
+                <p><strong>Endpoint:</strong> <code>GET /api/expenses/:id</code></p>
+                <p><strong>Description:</strong> Fetch a specific expense by ID</p>
+                
+                <h4>3. Create Expense</h4>
+                <p><strong>Endpoint:</strong> <code>POST /api/expenses</code></p>
+                <p><strong>Description:</strong> Create a new expense</p>
+                <p><strong>Request Body:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "expense_name": "Lunch at Restaurant",
+  "amount": 250.00,
+  "category": "Food & Drink",
+  "expense_date": "2024-11-05"
+}</pre>
+                <p><strong>Validation Rules:</strong></p>
+                <ul>
+                    <li><code>expense_name</code>: Required, string, max 255 characters</li>
+                    <li><code>amount</code>: Required, number, positive value</li>
+                    <li><code>category</code>: Required, string</li>
+                    <li><code>expense_date</code>: Required, valid date format</li>
+                </ul>
+                
+                <h4>4. Update Expense</h4>
+                <p><strong>Endpoint:</strong> <code>PUT /api/expenses/:id</code></p>
+                <p><strong>Description:</strong> Update an existing expense</p>
+                <p><strong>Request Body:</strong> Same as Create Expense</p>
+                
+                <h4>5. Delete Expense</h4>
+                <p><strong>Endpoint:</strong> <code>DELETE /api/expenses/:id</code></p>
+                <p><strong>Description:</strong> Delete an expense</p>
+                <p><strong>Response:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "success": true,
+  "message": "Expense deleted successfully"
+}</pre>
+                
+                <h3>Budget Endpoints</h3>
+                
+                <h4>1. Get Budget</h4>
+                <p><strong>Endpoint:</strong> <code>GET /api/budget</code></p>
+                <p><strong>Description:</strong> Fetch current budget</p>
+                <p><strong>Response:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "total_amount": 20000.00,
+    "created_at": "2024-11-01T10:00:00Z",
+    "updated_at": "2024-11-01T10:00:00Z"
+  }
+}</pre>
+                
+                <h4>2. Set/Update Budget</h4>
+                <p><strong>Endpoint:</strong> <code>POST /api/budget</code></p>
+                <p><strong>Description:</strong> Create or update budget</p>
+                <p><strong>Request Body:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "total_amount": 20000.00
+}</pre>
+                
+                <h3>Category Endpoints (Optional)</h3>
+                
+                <h4>Get All Categories</h4>
+                <p><strong>Endpoint:</strong> <code>GET /api/categories</code></p>
+                <p><strong>Description:</strong> Fetch all available categories</p>
+                <p><strong>Response:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "success": true,
+  "data": [
+    { "id": 1, "category_name": "Travel", "color_code": "#FF8C42" },
+    { "id": 2, "category_name": "Groceries", "color_code": "#4A7BF7" },
+    { "id": 3, "category_name": "Food & Drink", "color_code": "#FFD166" },
+    { "id": 4, "category_name": "Health", "color_code": "#06FFA5" }
+  ]
+}</pre>
+                
+                <h3>Error Responses</h3>
+                <p>All endpoints return consistent error format:</p>
+                <pre style="background: #2d3748; color: #fc8181; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+{
+  "success": false,
+  "error": "Error message here",
+  "statusCode": 400
+}</pre>
+                
+                <h3>HTTP Status Codes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>200</td>
+                            <td>Success</td>
+                        </tr>
+                        <tr>
+                            <td>201</td>
+                            <td>Created</td>
+                        </tr>
+                        <tr>
+                            <td>400</td>
+                            <td>Bad Request (validation error)</td>
+                        </tr>
+                        <tr>
+                            <td>404</td>
+                            <td>Not Found</td>
+                        </tr>
+                        <tr>
+                            <td>500</td>
+                            <td>Internal Server Error</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="database">
+                <h2>🗄️ Database Schema</h2>
+                
+                <h3>MySQL Database: <code>expense_tracker</code></h3>
+                
+                <h4>Table 1: expenses</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>Unique expense ID</td>
+                        </tr>
+                        <tr>
+                            <td>expense_name</td>
+                            <td>VARCHAR(255)</td>
+                            <td>NOT NULL</td>
+                            <td>Name of the expense</td>
+                        </tr>
+                        <tr>
+                            <td>amount</td>
+                            <td>DECIMAL(10,2)</td>
+                            <td>NOT NULL</td>
+                            <td>Expense amount</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>VARCHAR(100)</td>
+                            <td>NOT NULL</td>
+                            <td>Expense category</td>
+                        </tr>
+                        <tr>
+                            <td>expense_date</td>
+                            <td>DATE</td>
+                            <td>NOT NULL</td>
+                            <td>Date of expense</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP</td>
+                            <td>Record creation time</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</td>
+                            <td>Record update time</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>SQL Script:</h4>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+CREATE TABLE expenses (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  expense_name VARCHAR(255) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  category VARCHAR(100) NOT NULL,
+  expense_date DATE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);</pre>
+                
+                <h4>Table 2: budget</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>Budget ID</td>
+                        </tr>
+                        <tr>
+                            <td>total_amount</td>
+                            <td>DECIMAL(10,2)</td>
+                            <td>NOT NULL</td>
+                            <td>Total budget amount</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP</td>
+                            <td>Record creation time</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</td>
+                            <td>Record update time</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>SQL Script:</h4>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+CREATE TABLE budget (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  total_amount DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);</pre>
+                
+                <h4>Table 3: categories (Optional)</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Constraints</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>INT</td>
+                            <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                            <td>Category ID</td>
+                        </tr>
+                        <tr>
+                            <td>category_name</td>
+                            <td>VARCHAR(100)</td>
+                            <td>NOT NULL, UNIQUE</td>
+                            <td>Category name</td>
+                        </tr>
+                        <tr>
+                            <td>color_code</td>
+                            <td>VARCHAR(7)</td>
+                            <td>NULL</td>
+                            <td>Hex color code for charts</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>SQL Script:</h4>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+CREATE TABLE categories (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  category_name VARCHAR(100) NOT NULL UNIQUE,
+  color_code VARCHAR(7)
+);
+
+-- Insert default categories
+INSERT INTO categories (category_name, color_code) VALUES
+('Travel', '#FF8C42'),
+('Groceries', '#4A7BF7'),
+('Food & Drink', '#FFD166'),
+('Health', '#06FFA5'),
+('Meal', '#A8DADC');</pre>
+                
+                <h3>Database Connection (Node.js)</h3>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+// config/database.js
+const mysql = require('mysql2');
+require('dotenv').config();
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+
+module.exports = pool.promise();</pre>
+                
+                <h3>.env File Example</h3>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=expense_tracker
+PORT=5000</pre>
+            </section>
+            
+            <section id="testing">
+                <h2>🧪 Testing Strategy</h2>
+                
+                <h3>Manual Testing Checklist</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Test Case</th>
+                            <th>Expected Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Add Expense</td>
+                            <td>Fill all fields and submit</td>
+                            <td>Expense appears in table and charts update</td>
+                        </tr>
+                        <tr>
+                            <td>Edit Expense</td>
+                            <td>Click edit, modify data, save</td>
+                            <td>Changes reflect in table and charts</td>
+                        </tr>
+                        <tr>
+                            <td>Delete Expense</td>
+                            <td>Click delete, confirm</td>
+                            <td>Expense removed from table and charts update</td>
+                        </tr>
+                        <tr>
+                            <td>Add Budget</td>
+                            <td>Enter amount and save</td>
+                            <td>Budget cards update with new values</td>
+                        </tr>
+                        <tr>
+                            <td>Category Filter</td>
+                            <td>Click category button</td>
+                            <td>Table shows only selected category expenses</td>
+                        </tr>
+                        <tr>
+                            <td>Form Validation</td>
+                            <td>Submit empty form</td>
+                            <td>Error messages display for required fields</td>
+                        </tr>
+                        <tr>
+                            <td>Responsive Design</td>
+                            <td>Resize browser to mobile width</td>
+                            <td>Layout adapts, all features accessible</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>API Testing with Postman</h3>
+                <ul>
+                    <li>Test all CRUD endpoints for expenses</li>
+                    <li>Test budget endpoints</li>
+                    <li>Verify proper error handling</li>
+                    <li>Check response status codes</li>
+                    <li>Validate response data structure</li>
+                </ul>
+            </section>
+            
+            <section id="deployment">
+                <h2>🚀 Deployment Guide</h2>
+                
+                <h3>Local Development Setup</h3>
+                <ol>
+                    <li><strong>Clone Repository</strong>
+                        <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">git clone &lt;repository-url&gt;
+cd expense-tracker</pre>
+                    </li>
+                    <li><strong>Backend Setup</strong>
+                        <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">cd backend
+npm install
+# Create .env file with database credentials
+npm run dev</pre>
+                    </li>
+                    <li><strong>Database Setup</strong>
+                        <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">mysql -u root -p
+CREATE DATABASE expense_tracker;
+USE expense_tracker;
+# Run schema.sql file
+source schema.sql;</pre>
+                    </li>
+                    <li><strong>Frontend Setup</strong>
+                        <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">cd frontend
+npm install
+npm start</pre>
+                    </li>
+                </ol>
+                
+                <h3>Production Deployment Options</h3>
+                
+                <h4>Option 1: Deploy to Heroku (Backend) + Netlify (Frontend)</h4>
+                <ul>
+                    <li><strong>Backend:</strong> Deploy Express app to Heroku</li>
+                    <li><strong>Database:</strong> Use ClearDB or JawsDB MySQL addon</li>
+                    <li><strong>Frontend:</strong> Build React app and deploy to Netlify</li>
+                </ul>
+                
+                <h4>Option 2: Deploy to Render</h4>
+                <ul>
+                    <li>Deploy both frontend and backend to Render</li>
+                    <li>Use Render's PostgreSQL or external MySQL service</li>
+                </ul>
+                
+                <h4>Option 3: Deploy to Vercel + Railway</h4>
+                <ul>
+                    <li><strong>Frontend:</strong> Deploy to Vercel</li>
+                    <li><strong>Backend + Database:</strong> Deploy to Railway</li>
+                </ul>
+                
+                <h3>Environment Variables for Production</h3>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">
+# Backend .env
+DB_HOST=your-production-db-host
+DB_USER=your-db-user
+DB_PASSWORD=your-db-password
+DB_NAME=expense_tracker
+PORT=5000
+NODE_ENV=production
+
+# Frontend .env
+REACT_APP_API_URL=https://your-backend-url.com/api</pre>
+            </section>
+            
+            <section id="folder-structure">
+                <h2>📁 Project Folder Structure</h2>
+                
+                <h3>Complete Project Structure</h3>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+expense-tracker/
+│
+├── backend/
+│   ├── config/
+│   │   └── database.js          # MySQL connection config
+│   ├── controllers/
+│   │   ├── expenseController.js # Expense CRUD logic
+│   │   └── budgetController.js  # Budget logic
+│   ├── routes/
+│   │   ├── expenseRoutes.js     # Expense API routes
+│   │   └── budgetRoutes.js      # Budget API routes
+│   ├── middleware/
+│   │   └── errorHandler.js      # Error handling middleware
+│   ├── utils/
+│   │   └── validation.js        # Input validation helpers
+│   ├── schema.sql               # Database schema
+│   ├── server.js                # Express server entry point
+│   ├── .env                     # Environment variables
+│   ├── .gitignore
+│   └── package.json
+│
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Dashboard.js
+│   │   │   ├── BudgetCard.js
+│   │   │   ├── ExpenseTable.js
+│   │   │   ├── PieChart.js
+│   │   │   ├── BarChart.js
+│   │   │   ├── AddExpenseModal.js
+│   │   │   ├── EditExpenseModal.js
+│   │   │   ├── AddBudgetModal.js
+│   │   │   └── DeleteConfirmation.js
+│   │   ├── utils/
+│   │   │   └── api.js           # Axios API calls
+│   │   ├── styles/
+│   │   │   └── App.css
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── .env
+│   ├── .gitignore
+│   └── package.json
+│
+├── README.md                    # Project documentation
+└── .gitignore                   # Global gitignore
+</pre>
+            </section>
+            
+            <section id="best-practices">
+                <h2>✅ Development Best Practices</h2>
+                
+                <h3>Code Quality</h3>
+                <ul>
+                    <li>Use meaningful variable and function names</li>
+                    <li>Add comments for complex logic</li>
+                    <li>Keep functions small and focused (single responsibility)</li>
+                    <li>Use async/await for asynchronous operations</li>
+                    <li>Implement proper error handling with try-catch blocks</li>
+                </ul>
+                
+                <h3>Git Workflow</h3>
+                <ul>
+                    <li>Commit frequently with descriptive messages</li>
+                    <li>Use branches for new features (feature/expense-crud)</li>
+                    <li>Write clear commit messages: "Add expense delete functionality"</li>
+                    <li>Push code regularly to backup progress</li>
+                </ul>
+                
+                <h3>Security Best Practices</h3>
+                <ul>
+                    <li>Never commit .env files to Git</li>
+                    <li>Validate all user inputs on backend</li>
+                    <li>Use parameterized queries to prevent SQL injection</li>
+                    <li>Sanitize data before displaying in UI</li>
+                    <li>Enable CORS only for trusted origins in production</li>
+                </ul>
+                
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li>Use database indexing on frequently queried columns</li>
+                    <li>Implement pagination for large datasets (future enhancement)</li>
+                    <li>Minimize API calls by caching data when appropriate</li>
+                    <li>Optimize images and assets</li>
+                    <li>Use React.memo() for expensive components</li>
+                </ul>
+            </section>
+            
+            <section id="troubleshooting">
+                <h2>🔧 Common Issues & Solutions</h2>
+                
+                <h3>Backend Issues</h3>
+                
+                <h4>Problem: "Cannot connect to MySQL database"</h4>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Check if MySQL service is running</li>
+                    <li>Verify .env credentials are correct</li>
+                    <li>Ensure database 'expense_tracker' exists</li>
+                    <li>Check if firewall is blocking MySQL port (3306)</li>
+                </ul>
+                
+                <h4>Problem: "CORS error when calling API"</h4>
+                <p><strong>Solution:</strong></p>
+                <pre style="background: #2d3748; color: #68d391; padding: 1rem; border-radius: 4px;">
+// In server.js, add CORS middleware
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));</pre>
+                
+                <h4>Problem: "Port 5000 already in use"</h4>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Change PORT in .env file to 5001 or another available port</li>
+                    <li>Or kill the process using port 5000</li>
+                </ul>
+                
+                <h3>Frontend Issues</h3>
+                
+                <h4>Problem: "API calls returning 404"</h4>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Verify backend server is running</li>
+                    <li>Check API URL in axios calls matches backend port</li>
+                    <li>Ensure routes are properly defined in backend</li>
+                </ul>
+                
+                <h4>Problem: "Charts not displaying data"</h4>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Check if expense data is being fetched correctly</li>
+                    <li>Verify chart data format matches library requirements</li>
+                    <li>Console.log the data before passing to chart component</li>
+                    <li>Ensure chart library is properly imported</li>
+                </ul>
+                
+                <h4>Problem: "Modal not closing after form submission"</h4>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Call the close modal function in the success callback</li>
+                    <li>Reset form state after successful submission</li>
+                    <li>Check if form submission is actually successful</li>
+                </ul>
+            </section>
+            
+            <section id="learning-resources">
+                <h2>📚 Learning Resources</h2>
+                
+                <h3>React</h3>
+                <ul>
+                    <li>React Official Documentation: https://react.dev</li>
+                    <li>React Hooks Guide</li>
+                    <li>State Management with useState</li>
+                    <li>useEffect for side effects</li>
+                </ul>
+                
+                <h3>Node.js & Express</h3>
+                <ul>
+                    <li>Express.js Documentation: https://expressjs.com</li>
+                    <li>RESTful API design principles</li>
+                    <li>Middleware concepts</li>
+                    <li>Error handling in Express</li>
+                </ul>
+                
+                <h3>MySQL</h3>
+                <ul>
+                    <li>MySQL Tutorial: https://dev.mysql.com/doc/</li>
+                    <li>SQL CRUD operations</li>
+                    <li>Joins and relationships</li>
+                    <li>Database normalization</li>
+                </ul>
+                
+                <h3>Chart.js / Recharts</h3>
+                <ul>
+                    <li>Chart.js Documentation: https://www.chartjs.org</li>
+                    <li>Recharts Documentation: https://recharts.org</li>
+                    <li>Creating responsive charts</li>
+                    <li>Customizing chart appearance</li>
+                </ul>
+            </section>
+            
+            <section id="success-metrics">
+                <h2>📊 Success Metrics</h2>
+                
+                <h3>MVP Completion Criteria</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Status</th>
+                            <th>Criteria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dashboard</td>
+                            <td>✅</td>
+                            <td>All cards display correct data</td>
+                        </tr>
+                        <tr>
+                            <td>Add Expense</td>
+                            <td>✅</td>
+                            <td>Form validates and saves to database</td>
+                        </tr>
+                        <tr>
+                            <td>Edit Expense</td>
+                            <td>✅</td>
+                            <td>Updates persist and UI reflects changes</td>
+                        </tr>
+                        <tr>
+                            <td>Delete Expense</td>
+                            <td>✅</td>
+                            <td>Confirmation modal works, expense removed</td>
+                        </tr>
+                        <tr>
+                            <td>Budget Management</td>
+                            <td>✅</td>
+                            <td>Budget can be set/updated, calculations accurate</td>
+                        </tr>
+                        <tr>
+                            <td>Pie Chart</td>
+                            <td>✅</td>
+                            <td>Shows category distribution correctly</td>
+                        </tr>
+                        <tr>
+                            <td>Bar Chart</td>
+                            <td>✅</td>
+                            <td>Displays spending trends</td>
+                        </tr>
+                        <tr>
+                            <td>Expense Table</td>
+                            <td>✅</td>
+                            <td>Lists all expenses with edit/delete buttons</td>
+                        </tr>
+                        <tr>
+                            <td>Category Filter</td>
+                            <td>✅</td>
+                            <td>Filters work for all categories</td>
+                        </tr>
+                        <tr>
+                            <td>Responsive Design</td>
+                            <td>✅</td>
+                            <td>Works on mobile, tablet, and desktop</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Learning Outcomes</h3>
+                <ul>
+                    <li>Understand full-stack application architecture</li>
+                    <li>Build RESTful APIs with Express</li>
+                    <li>Work with MySQL database and write SQL queries</li>
+                    <li>Create interactive React components</li>
+                    <li>Implement CRUD operations end-to-end</li>
+                    <li>Data visualization with charts</li>
+                    <li>Form handling and validation</li>
+                    <li>State management in React</li>
+                    <li>API integration with Axios</li>
+                    <li>Git version control workflow</li>
+                </ul>
+            </section>
+            
+            <section id="agile-ceremonies">
+                <h2>🔄 Agile Scrum Ceremonies</h2>
+                
+                <h3>Sprint Planning (Beginning of each sprint)</h3>
+                <ul>
+                    <li><strong>Duration:</strong> 30 minutes</li>
+                    <li><strong>Purpose:</strong> Review sprint goals, break down tasks, estimate time</li>
+                    <li><strong>Output:</strong> Sprint backlog with clear tasks and time estimates</li>
+                </ul>
+                
+                <h3>Daily Standup (Optional for solo developers)</h3>
+                <ul>
+                    <li><strong>Duration:</strong> 5 minutes (self-reflection)</li>
+                    <li><strong>Questions:</strong>
+                        <ul>
+                            <li>What did I accomplish yesterday?</li>
+                            <li>What will I work on today?</li>
+                            <li>Are there any blockers?</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>Sprint Review (End of each sprint)</h3>
+                <ul>
+                    <li><strong>Duration:</strong> 30 minutes</li>
+                    <li><strong>Purpose:</strong> Demo completed features, test functionality</li>
+                    <li><strong>Output:</strong> Working features ready for next sprint</li>
+                </ul>
+                
+                <h3>Sprint Retrospective (End of each sprint)</h3>
+                <ul>
+                    <li><strong>Duration:</strong> 15 minutes</li>
+                    <li><strong>Questions:</strong>
+                        <ul>
+                            <li>What went well?</li>
+                            <li>What could be improved?</li>
+                            <li>What will I do differently next sprint?</li>
+                        </ul>
+                    </li>
+                    <li><strong>Output:</strong> Action items for improvement</li>
+                </ul>
+            </section>
+            
+            <section id="future-enhancements">
+                <h2>🚀 Future Enhancements</h2>
+                
+                <h3>Phase 2 Features (Post-MVP)</h3>
+                <ul>
+                    <li><strong>Multi-user Authentication:</strong> Add user registration and login</li>
+                    <li><strong>Date Range Filtering:</strong> Filter expenses by custom date ranges</li>
+                    <li><strong>Export Functionality:</strong> Export expenses to CSV/PDF</li>
+                    <li><strong>Recurring Expenses:</strong> Set up automatic recurring expenses</li>
+                    <li><strong>Budget Alerts:</strong> Email/push notifications when budget limit reached</li>
+                    <li><strong>Monthly Reports:</strong> Automated monthly expense reports</li>
+                    <li><strong>Custom Categories:</strong> Allow users to create custom categories</li>
+                    <li><strong>Receipt Upload:</strong> Attach receipt images to expenses</li>
+                    <li><strong>Dark Mode:</strong> Toggle between light and dark themes</li>
+                    <li><strong>Expense Search:</strong> Search expenses by name or amount</li>
+                    <li><strong>Budget by Category:</strong> Set individual budgets for each category</li>
+                    <li><strong>Expense Tags:</strong> Add tags to expenses for better organization</li>
+                </ul>
+                
+                <h3>Technical Improvements</h3>
+                <ul>
+                    <li>Add unit tests with Jest</li>
+                    <li>Implement integration tests</li>
+                    <li>Add TypeScript for type safety</li>
+                    <li>Implement Redux for state management</li>
+                    <li>Add caching with Redis</li>
+                    <li>Implement pagination for large datasets</li>
+                    <li>Add API rate limiting</li>
+                    <li>Optimize database queries with indexes</li>
+                </ul>
+            </section>
+        </div>
+        
+        <footer>
+            <p><strong>Expense Tracker PRD</strong> - Version 1.0</p>
+            <p>Built with React, Node.js, Express, and MySQL</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Agile Scrum Development | 5-Sprint MVP | 6 Hours per Week</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                📧 Questions? Refer to this PRD and update as project evolves
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+    </script>
+</body>
+</html>
